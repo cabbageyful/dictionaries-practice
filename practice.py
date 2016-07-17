@@ -102,6 +102,16 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
+    master_lst = []
+
+
+    for num in range(len(numbers)): # have to iterate over each item
+        zero_sum_pairs = []  # create new short list to hold our pairs
+        num # take item and add to next item in list
+    # if i + lst[x] = 0, 
+        # create a list of [i, lst[x]
+        # extend that list to master lst
+
     return []
 
 

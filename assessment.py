@@ -62,7 +62,18 @@ def get_melon_price(melon_name):
         'No price found'
     """
 
-    return 0
+    melon_stock = {
+        'Watermelon': 2.95,
+        'Cantaloupe': 2.50,
+        'Musk': 3.25,
+        'Christmas': 14.25,
+    }
+
+    if melon_name in melon_stock.keys():
+        return melon_stock[melon_name]
+    else:
+        return 'No price found'
+
 
 
 def word_length_sorted(words):

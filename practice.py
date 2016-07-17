@@ -66,8 +66,14 @@ def find_unique_common_items(items1, items2):
         >>> sorted(find_unique_common_items(["2", "1", 2], [2, 1]))
         [2]
     """
+    # turn each list into a set
+    # use intersection
 
-    return []
+    items1, items2 = set(items1), set(items2)   # no brackets when passing list
+
+    return items1 & items2
+
+
 
 def get_sum_zero_pairs(numbers):
     """Given list of numbers, return list of pair summing to 0.

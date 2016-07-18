@@ -34,8 +34,8 @@ def count_words(phrase):
     uniques = {}
 
     for word in phrase:
-        if word in uniques.keys():  # if word in uniques then add 1 to value
-            uniques[word] += 1
+        if word in uniques.keys():      # I feel like I could have used some 
+            uniques[word] += 1          # form of list comprehension here.
         else:
             uniques.setdefault(word, 1)
 
@@ -69,7 +69,7 @@ def get_melon_price(melon_name):
         'Christmas': 14.25,
     }
 
-    if melon_name in melon_stock.keys():
+    if melon_name in melon_stock.keys():   # tried so hard to use comprehension here too.
         return melon_stock[melon_name]
     else:
         return 'No price found'
@@ -91,8 +91,18 @@ def word_length_sorted(words):
         >>> word_length_sorted(["ok", "an", "apple", "a", "day"])
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
     """
+    word_lengths = {}
 
-    return []
+    for word in words:
+        if len(word) in word_lengths.keys():
+            word_lengths[len(word)].append(word)
+            word_lengths[len(word)].sort()
+        else:
+            word_lengths.setdefault(len(word), [word])
+
+    return sorted(word_lengths.items())
+
+    # create tuples where tup[0] is the integer, len(word) & tup[1] is a list of words w/ that length
 
 
 def translate_to_pirate_talk(phrase):

@@ -3,6 +3,7 @@
 **IMPORTANT:** these problems are meant to be solved using
 dictionaries and sets.
 """
+# import string (see translate to pirate talk, was trying something)
 
 def count_words(phrase):
     """Count unique words in a string.
@@ -102,7 +103,7 @@ def word_length_sorted(words):
 
     return sorted(word_lengths.items())
 
-    # create tuples where tup[0] is the integer, len(word) & tup[1] is a list of words w/ that length
+    # returns tuples where tup[0] is the integer, len(word) & tup[1] is a list of words w/ that length
 
 
 def translate_to_pirate_talk(phrase):
@@ -143,6 +144,36 @@ def translate_to_pirate_talk(phrase):
         >>> translate_to_pirate_talk("my student is not a man!")
         'me swabbie be not a man!'
     """
+    # try to use maketrans on keys, values
+    
+
+    pirate_translation = {
+
+        'sir': 'matey',
+        'hotel': 'fleabag inn',   # how do you iterate over this type of list in a docstring?
+        'student': 'swabbie',
+        'man': 'matey',
+        'professor': 'foul blaggart',
+        'restaurant': 'galley',
+        'your': 'yer',
+        'excuse': 'arr',
+        'students': 'swabbies',
+        'are': 'be',
+        'restroom': 'head',
+        'my': 'me',
+        'is': 'be',
+    }
+
+    # # tried doing:
+    # x = pirate_translation.keys()
+    # y = pirate_translation.values()
+    # eng_to_pirate = string.maketrans(x, y)    # x being what it was, y being the new pirate
+    # whoops, can't use maketrans on a list, which is what pirate_translation.keys() returns...
+
+    # phrase.split()
+    # iterate over each word in phrase-list
+    # if word in phrase in pirate_transalation keys, replace word key value,
+    # then do a join on phrase-list to return it to a string.
 
     return ""
 
@@ -184,6 +215,10 @@ def kids_game(names):
     a dictionary (with the super-fast lookup they provide) can help;
     good solutions here will definitely require a dictionary.
     """
+
+    # use markov chains
+    # use item[0] from list as starter
+    # 
 
     return []
 

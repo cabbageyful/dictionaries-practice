@@ -206,7 +206,10 @@ def kids_game(names):
 
     # use markov chains
     # use item[0] from list as starter
-    # 
+    game_list = []
+    game_list.append(names[0])
+
+    # storing_dict[names[0][-1]] =
 
     return []
 

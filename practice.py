@@ -32,12 +32,7 @@ def without_duplicates(words):
         [2, 33333, 111111]
     """
 
-    remove_duplicates = {}
-
-    for i in words:
-        remove_duplicates[i] = None
-
-    return remove_duplicates.keys()
+    return set(words)
 
 
 def find_unique_common_items(items1, items2):
@@ -74,7 +69,6 @@ def find_unique_common_items(items1, items2):
     return items1 & items2
 
 
-
 def get_sum_zero_pairs(numbers):
     """Given list of numbers, return list of pair summing to 0.
 
@@ -102,17 +96,18 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
-    master_lst = []
+    unique_nums = list(set(numbers))         # easier to iterate over a list
 
+    zero_sums = []
 
-    for num in range(len(numbers)): # have to iterate over each item
-        zero_sum_pairs = []  # create new short list to hold our pairs
-        num # take item and add to next item in list
-    # if i + lst[x] = 0, 
-        # create a list of [i, lst[x]
-        # extend that list to master lst
+    for num in unique_nums[:]:
+        if -num in unique_nums[:]:
+            zero_sums.append([num, -num])
+            unique_nums.remove(num)
+            if num != 0:
+                unique_nums.remove(-num)
 
-    return []
+    return zero_sums
 
 
 def top_chars(phrase):
@@ -140,7 +135,21 @@ def top_chars(phrase):
 
     """
 
-    return []
+    letter_count = {}
+
+    phrase = phrase.replace(' ', '')             # removing all space characters
+    for k in phrase:
+        letter_count[k] = phrase.count(k)
+
+    highest_number = max(letter_count.values())
+
+    most_letters = []
+
+    for key, val in letter_count.items():
+        if val == highest_number:
+            most_letters.append(key)
+
+    return most_letters
 
 #####################################################################
 # You can ignore everything below this.

@@ -3,7 +3,7 @@
 **IMPORTANT:** these problems are meant to be solved using
 dictionaries and sets.
 """
-# import string (see translate to pirate talk, was trying something)
+
 
 def count_words(phrase):
     """Count unique words in a string.
@@ -35,10 +35,10 @@ def count_words(phrase):
     uniques = {}
 
     for word in phrase:
-        if word in uniques.keys():      # I feel like I could have used some 
-            uniques[word] += 1          # form of list comprehension here.
-        else:
+        if uniques.get(word) is None:
             uniques.setdefault(word, 1)
+        else:
+            uniques[word] += 1
 
     return uniques
 
@@ -70,11 +70,10 @@ def get_melon_price(melon_name):
         'Christmas': 14.25,
     }
 
-    if melon_name in melon_stock.keys():   # tried so hard to use comprehension here too.
+    if melon_name in melon_stock:
         return melon_stock[melon_name]
     else:
         return 'No price found'
-
 
 
 def word_length_sorted(words):
@@ -92,18 +91,17 @@ def word_length_sorted(words):
         >>> word_length_sorted(["ok", "an", "apple", "a", "day"])
         [(1, ['a']), (2, ['an', 'ok']), (3, ['day']), (5, ['apple'])]
     """
+
     word_lengths = {}
 
     for word in words:
-        if len(word) in word_lengths.keys():
+        if len(word) in word_lengths:
             word_lengths[len(word)].append(word)
             word_lengths[len(word)].sort()
         else:
             word_lengths.setdefault(len(word), [word])
 
     return sorted(word_lengths.items())
-
-    # returns tuples where tup[0] is the integer, len(word) & tup[1] is a list of words w/ that length
 
 
 def translate_to_pirate_talk(phrase):
@@ -148,7 +146,7 @@ def translate_to_pirate_talk(phrase):
     pirate_translation = {
 
         'sir': 'matey',
-        'hotel': 'fleabag inn',   # how do you iterate over this type of list in a docstring?
+        'hotel': 'fleabag inn',
         'student': 'swabbie',
         'man': 'matey',
         'professor': 'foul blaggart',
@@ -162,6 +160,9 @@ def translate_to_pirate_talk(phrase):
         'is': 'be',
     }
 
+    # splits input string on each word, looks up in word in pirate dict, if not defaults
+    # to the input word. if in pirate dict, get returns the pirate value for the english
+    # word. Finally, the output returned is joined back into a string.
 
     return " ".join([pirate_translation.get(word, word) for word in phrase.split()])
 
@@ -204,14 +205,26 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    # use markov chains
-    # use item[0] from list as starter
     game_list = []
-    game_list.append(names[0])
+    game_list.append(names.pop(0))
 
-    # storing_dict[names[0][-1]] =
+    letter_lookup = {}
+    for word in names:
+        if letter_lookup.get(word[0]) is None:
+            letter_lookup[word[0]] = [word]
+        else:
+            letter_lookup[word[0]].append(word)
 
-    return []
+    starting_letter = game_list[-1][-1]
+    while starting_letter in letter_lookup:
+        new_word = letter_lookup[starting_letter].pop(0)
+        if not letter_lookup[starting_letter]:              # delete keys w/ empty vals immediately
+            del letter_lookup[starting_letter]
+        game_list.append(new_word)
+        starting_letter = new_word[-1]
+
+    return game_list
+
 
 #####################################################################
 # You can ignore everything below this.
